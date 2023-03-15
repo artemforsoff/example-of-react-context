@@ -1,26 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useStore } from "./useStore";
+import { A } from "./A";
+import { B } from "./B";
+import { StoreContext } from "./context";
 
-function App() {
+export const App = () => {
+  const [store, dispatch] = useStore();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreContext.Provider value={[store, dispatch]}>
+      <A />
+      <B />
+    </StoreContext.Provider>
   );
-}
-
-export default App;
+};
